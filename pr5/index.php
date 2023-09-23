@@ -23,9 +23,16 @@
         catch(PDOException $ex){
             die('Произошла ошибка');
         }
+
         $result = $connection->query('SELECT * FROM `product`');
-        echo "<table class = 'table' border = '1'>";
         
+        if ($result) {
+            if ($result->rowCount() ==0) {
+                echo "Таблица пустая";
+            } else {
+        }
+        
+        echo "<table class = 'table' border = '1'>";
         $row = $result->fetch( PDO::FETCH_ASSOC );
             echo "<tr>";
             foreach ($row as $key => $value) {
@@ -41,7 +48,11 @@
             echo "</tr>";
         } while($row = $result->fetch( PDO::FETCH_ASSOC )); 
         }
-        echo "</table>";
+        echo "</table>"; 
+        }
+        else {
+            echo 'Запрос выполнен с ошибкой';
+        }
         ?>
         
 </body>
