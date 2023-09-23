@@ -2,9 +2,14 @@
 <html>
 <head>
     <title>Таблица на основе данных из PHP</title>
+    <style>
+        .table {
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
-    
+
         <?php
         $host       = "db4.myarena.ru";     // Адрес сервера базы данных
         $dbname     = "u19978_b06";     // Имя базы данных
@@ -18,22 +23,25 @@
         catch(PDOException $ex){
             die('Произошла ошибка');
         }
-
-        // echo ("<table>
-        // <tr>
-        //     <th>$key</th>
-        // </tr>
-        // <td>$value</td>
-        // </table>");
-    
         $result = $connection->query('SELECT * FROM `product`');
-        while($row = $result->fetch( PDO::FETCH_ASSOC )){
+        echo "<table class = 'table' border = '1'>";
+        
+        $row = $result->fetch( PDO::FETCH_ASSOC );
+            echo "<tr>";
             foreach ($row as $key => $value) {
-                echo "<th>".$key."<th>";
+                echo "<th>".$key."</th>";
+            };
+            echo "</tr>";
+       {
+        do {
+            echo "<tr>";
+            foreach ($row as $key => $value) {
                 echo "<td>".$value."</td>";
             }
+            echo "</tr>";
+        } while($row = $result->fetch( PDO::FETCH_ASSOC )); 
         }
-        
+        echo "</table>";
         ?>
         
 </body>
