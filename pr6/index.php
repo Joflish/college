@@ -9,7 +9,7 @@
 
     <form action="action.php" method="post">
         <p>Ваше имя: <input type="text" required name="name"></p>
-        <p>Ваш возраст: <input type="number" required name="age"></p>
+        <p>Ваш возраст: <input type="number" required name="age" min="1"></p>
         <a href="action.html"><p><input type="submit"></p> </a>
     </form>
 
