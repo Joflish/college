@@ -30,23 +30,19 @@
     $password = $_POST['password'];
     $secondPassword = $_POST['secondPassword'];
     $mail = $_POST['mail'];
-
-    
-    if (((strlen ($password)) < 8)) exit ("В поле 'пароль' введено мало символов");
-    if (((strlen ($password)) > 15)) exit ("В поле 'пароль' введено много символов");
-    
-
     if(empty($login)) exit('Поле "логин" не заполнено');
     if(empty($password)) {
         exit('Поле "пароль" не заполнено');
     };
     if(empty($secondPassword)) exit('Поле "повторный пароль" не заполнено');
-    if(empty($mail)) exit('Поле "почта" не заполнено');
-
+    
+    if (strlen ($password) < 8 ) exit ("В поле 'пароль' введено мало символов");
+    if (strlen ($password) > 15 ) exit ("В поле 'пароль' введено много символов");
 
     if ($password !== $secondPassword) {
         exit ('Пароли не совпадают');
     };
+    if(empty($mail)) exit('Поле "почта" не заполнено');
 
 
     $data = [ $login, $password, $mail ];
@@ -60,9 +56,6 @@
     else {
         exit ( 'Ошибка регистрации ...' );
     }
-        
-    
-   
 ?>
 
     <a href="index.php"><button type = "submit">Назад</button></a>
